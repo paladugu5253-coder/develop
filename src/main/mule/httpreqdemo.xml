@@ -21,5 +21,6 @@ output application/json
 payload]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="5e85b798-bcfe-46f3-98ee-9035255b3997" message="httpreqdemo is end now"/>
 	</flow>
 </mule>
