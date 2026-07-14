@@ -1,2 +1,10 @@
 http:
   port: "8081"
+  
+deployment:
+  environment: "DEV"
+  targetName: "Cloudhub-US-East-2"
+  muleVersion: "4.12"
+  
+user: "paladugu9"
+pass: "Srinivas@5"
