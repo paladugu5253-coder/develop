@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ec9d87ae-2e9a-40e8-9d45-718f51cf6f8d" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="cedfcbcf-b9b8-4d0c-85be-8c0be4d3a105" file="Dev.yaml" />
+	<flow name="httpreqdemoFlow" doc:id="5baaf4df-8e0d-4080-abb5-d03d3ec4c45e" >
+		<http:listener doc:name="Listener" doc:id="a33c95f4-7969-477e-9a69-5d991c3215dd" config-ref="HTTP_Listener_config" path="/hello"/>
+		<http:request method="GET" doc:name="Request" doc:id="f918dda7-5d69-4bb1-be70-b55862ef3123" url="https://api.restful-api.dev/objects">
+		</http:request>
+		<ee:transform doc:name="Transform Message" doc:id="f109f988-8366-47d7-9670-02a3fa6c3ddc" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
